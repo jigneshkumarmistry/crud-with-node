@@ -1,14 +1,13 @@
 const express = require('express');
-
-const router = express.Router();
 const userController = require('../controllers').userController;
-import validations from '../validations/userValidation';
+import { verifyToken } from '../config/auth';
+
+const routes = express.Router();
 
 // all route for users
-router.get('/users', userController.getAll);
-router.get('/users/:id', userController.getById);
-router.post('/users', validations.validateUser, userController.create);
-router.put('/users/:id', validations.validateUser, userController.update);
-router.delete('/users/:id', userController.deleteById);
+routes.get('/users', verifyToken, userController.getAll);
+routes.get('/users/:id', verifyToken, userController.getById);
+routes.put('/users/:id', verifyToken, userController.update);
+routes.delete('/users/:id', verifyToken, userController.deleteById);
 
-export default router;
+export default routes;

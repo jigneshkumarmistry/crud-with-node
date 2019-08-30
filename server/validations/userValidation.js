@@ -5,7 +5,8 @@ const helper = require('../helper/helper');
 const userSchema = {
     firstName: validator.string().min(3).required(),
     lastName: validator.string().min(3).required(),
-    email: validator.string().email({ minDomainSegments: 2 })
+    email: validator.string().email({ minDomainSegments: 2 }),
+    password: validator.string().min(3).required()
 };
 
 /**

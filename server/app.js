@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const port = parseInt(process.env.PORT, 10) || 8000;
 const hostname = process.env.HOST_URL;
 
-import { userRoute } from './routes';
+import { userRoute, registerRoute } from './routes';
 
 const app = express();
 app.use(logger('dev'));
@@ -16,6 +16,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.set('port', port);
 
 app.use(userRoute);
+app.use(registerRoute);
+
 
 // app level error handling
 app.use((err, req, res, next) => {
